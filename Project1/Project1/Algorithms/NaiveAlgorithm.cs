@@ -9,9 +9,26 @@ namespace Project1.Algorithms
 {
     internal class NaiveAlgorithm : Algorithm
     {
-        public Result Run(string text, string template)
+        public Result Run(string text, string pattern)
         {
-            return new Result();
+            for (int i = 0; i <= text.Length - pattern.Length; i++)
+            {
+                bool doPatternFit = true;
+                for (int j = 0; j < pattern.Length; j++)
+                {
+                    if (text[i + j] != pattern[j])
+                    {
+                        doPatternFit = false;
+                        break;
+                    }
+                }
+
+                if (doPatternFit)
+                {
+                    Console.WriteLine($"found at index {i}");
+                }
+            }
+            return new Result(1, 1, 1);
         }
     }
 }

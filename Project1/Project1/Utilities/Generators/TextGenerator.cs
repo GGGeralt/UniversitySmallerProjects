@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project1.Utilities.Generators
 {
-    internal class TextGenerator
+    public class TextGenerator
     {
         public string Generate()
         {
@@ -28,6 +28,7 @@ namespace Project1.Utilities.Generators
             for (int i = 0; i < length; i++)
             {
                 text += ((char)random.Next(65, 90)).ToString();
+
             }
 
             return text;

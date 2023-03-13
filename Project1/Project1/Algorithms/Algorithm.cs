@@ -9,6 +9,6 @@ namespace Project1.Algorithms
 {
     internal interface Algorithm
     {
-        public Result Run(string text, string template);
+        public Result Run(string text, string pattern);
     }
 }
