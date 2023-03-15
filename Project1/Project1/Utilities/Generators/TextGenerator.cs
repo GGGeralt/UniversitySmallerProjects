@@ -14,7 +14,7 @@ namespace Project1.Utilities.Generators
 
             Random random = new Random();
 
-            text += ((char)random.Next(65, 90)).ToString();
+            text += ((char)random.Next(65, 91)).ToString();
 
             return text;
         }
@@ -27,11 +27,31 @@ namespace Project1.Utilities.Generators
 
             for (int i = 0; i < length; i++)
             {
-                text += ((char)random.Next(65, 90)).ToString();
+                text += ((char)'a' + random.Next(0, 25)).ToString();
 
             }
 
             return text;
+        }
+
+        public string GenerateFromTo(char from, char to, int length)
+        {
+            string text = string.Empty;
+
+            Random random = new Random();
+
+            for (int i = 0; i < length; i++)
+            {
+                text += ((char)random.Next((int)from, (int)(to + 1))).ToString();
+
+            }
+
+            return text;
+        }
+
+        public string GenerateFromAplhabet(int length)
+        {
+            return GenerateFromTo('A', 'Z', length);
         }
     }
 }

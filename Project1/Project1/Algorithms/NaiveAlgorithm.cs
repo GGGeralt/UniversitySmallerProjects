@@ -11,11 +11,16 @@ namespace Project1.Algorithms
     {
         public Result Run(string text, string pattern)
         {
+            Result result = new Result();
+
             for (int i = 0; i <= text.Length - pattern.Length; i++)
             {
                 bool doPatternFit = true;
+
                 for (int j = 0; j < pattern.Length; j++)
                 {
+                    result.computationalComplexity++;
+
                     if (text[i + j] != pattern[j])
                     {
                         doPatternFit = false;
@@ -25,10 +30,10 @@ namespace Project1.Algorithms
 
                 if (doPatternFit)
                 {
-                    Console.WriteLine($"found at index {i}");
+                    result.indexes.Add(i);
                 }
             }
-            return new Result(1, 1, 1);
+            return result;
         }
     }
 }

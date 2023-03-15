@@ -8,37 +8,23 @@ namespace Project1.Utilities.DataTypes
 {
     public class Result
     {
-        int computationalComplexity;
-        int memoryComplexity;
-        int index;
+        public int computationalComplexity;
+        public int memoryComplexity;
+        public List<int> indexes;
 
         public Result()
         {
             computationalComplexity = 0;
             memoryComplexity = 0;
-            index = 0;
+            indexes = new List<int>();
         }
 
-        public Result(int memoryComplexity, int computationalComplexity, int index)
+        public Result(int memoryComplexity, int computationalComplexity, List<int> index)
         {
             this.computationalComplexity = computationalComplexity;
             this.memoryComplexity = memoryComplexity;
-            this.index = index;
+            this.indexes = index;
         }
 
-        public int GetComputationalComplexity()
-        {
-            return computationalComplexity;
-        }
-
-        public int GetMemoryComplexity()
-        {
-            return memoryComplexity;
-        }
-
-        public int GetIndex()
-        {
-            return index;
-        }
     }
 }

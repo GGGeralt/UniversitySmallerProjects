@@ -7,51 +7,104 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+enum AlgorithmName
+{
+    Naive,
+    Sunday,
+}
 namespace Project1
 {
     internal class Algorithmer
     {
         static TextGenerator generator = new TextGenerator();
 
-        public static void Run()
+        public static void Run(AlgorithmName algorithm)
         {
-            RunAlgorithm(new NaiveAlgorithm());
+            switch (algorithm)
+            {
+                case AlgorithmName.Naive:
+                    RunAlgorithm(new NaiveAlgorithm(), "Naive");
+                    break;
+                case AlgorithmName.Sunday:
+                    RunAlgorithm(new SundayAlgorithm(), "Sunday");
+                    break;
+                default:
+                    break;
+            }
         }
 
-        private static void RunAlgorithm(Algorithm algorithm)
+        private static void RunAlgorithm(Algorithm algorithm, string name)
         {
-            string pattern = "ABA";
+            int index;
 
-            int from = 6;
-            int to = 7;
+            int minTextSize = 1;
+            int maxTextSize = 10_000;
 
-            //double[] computationalComplexity = new double[to - from];
-            //double[] memoryComplexity = new double[to - from];
-            //double[] indexes = new double[to - from];
+            double[] textSizeComplexity = new double[maxTextSize - minTextSize];
+            double[] textSizeIndexes = new double[maxTextSize - minTextSize];
 
-            int index = 0;
-
-            for (int i = from; i < to; i++)
+            index = 0;
+            for (int i = minTextSize; i < maxTextSize; i++)
             {
-                string text = "AAAAABA";
-                Console.WriteLine(text);
+                string text = generator.GenerateFromAplhabet(i);
+                string pattern = generator.GenerateFromAplhabet(5);
 
                 Result result = algorithm.Run(text, pattern);
-
-                //computationalComplexity[index] = result.GetComputationalComplexity();
-                //memoryComplexity[index] = result.GetMemoryComplexity();
-                //indexes[index] = index;
+                textSizeComplexity[index] = result.computationalComplexity;
+                textSizeIndexes[index] = index;
                 index++;
             }
+            var textSizeGraph = new ScottPlot.Plot(400, 300);
+            textSizeGraph.AddScatter(textSizeIndexes, textSizeComplexity);
+            textSizeGraph.SaveFig(name + "_Text_Size_Complexity.png");
 
 
-            //var computationalComplexityGraph = new ScottPlot.Plot(400, 300);
-            //computationalComplexityGraph.AddScatter(indexes, computationalComplexity);
-            //computationalComplexityGraph.SaveFig("computationalComplexity.png");
 
-            //var memoryComplexityGraph = new ScottPlot.Plot(400, 300);
-            //memoryComplexityGraph.AddScatter(indexes, memoryComplexity);
-            //memoryComplexityGraph.SaveFig("memoryComplexity.png");
+            int minPatternSize = 1;
+            int maxPatternSize = 100;
+
+            double[] patternSizeComplexity = new double[maxPatternSize - minPatternSize];
+            double[] paternSizeIndexes = new double[maxPatternSize - minPatternSize];
+
+            index = 0;
+            for (int i = minPatternSize; i < maxPatternSize; i++)
+            {
+                string text = generator.GenerateFromAplhabet(100_000);
+                string pattern = generator.GenerateFromAplhabet(i);
+
+                Result result = algorithm.Run(text, pattern);
+                patternSizeComplexity[index] = result.computationalComplexity;
+                paternSizeIndexes[index] = index;
+                index++;
+            }
+            var patternSizeGraph = new ScottPlot.Plot(400, 300);
+            patternSizeGraph.AddScatter(paternSizeIndexes, patternSizeComplexity);
+            patternSizeGraph.SaveFig(name + "_Pattern_Size_Complexity.png");
+
+
+
+            int minAlphabetSize = 0;
+            int maxAlphabetSize = 26;
+
+            double[] alphabetSizeComplexity = new double[maxAlphabetSize - minAlphabetSize];
+            double[] alphabetSizeIndexes = new double[maxAlphabetSize - minAlphabetSize];
+
+            index = 0;
+            for (int i = minAlphabetSize; i < maxAlphabetSize; i++)
+            {
+                string text = generator.GenerateFromTo('A', (char)('A' + i), 100_000);
+                string pattern = generator.GenerateFromTo('A', (char)('A' + i), 10);
+
+                Result result = algorithm.Run(text, pattern);
+                alphabetSizeComplexity[index] = result.computationalComplexity;
+                alphabetSizeIndexes[index] = index;
+                index++;
+            }
+            var alphabetSizeGraph = new ScottPlot.Plot(400, 300);
+            alphabetSizeGraph.AddScatter(alphabetSizeIndexes, alphabetSizeComplexity);
+            alphabetSizeGraph.SaveFig(name + "_Alphabet_Size_Complexity.png");
+
+
         }
     }
 }
