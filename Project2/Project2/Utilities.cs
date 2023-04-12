@@ -8,14 +8,20 @@ namespace Project2
 {
     public static class Utilities
     {
-
-        public static int MyHashFunc(int value)
+        #region Hashes
+        public static int MyHashFunc(int[] dict, int value)
         {
-            return value % 10;
+            return value % dict.Length;
         }
-
+        public static int MyHashFunc(List<int>[] dict, int value)
+        {
+            return value % dict.Length;
+        }
+        #endregion Hashes
+        #region WritingOut
         public static void WriteOutDict(List<int>[] dict)
         {
+            Console.WriteLine(dict.Length);
             for (int i = 0; i < dict.Length; i++)
             {
                 Console.Write(i + "||");
@@ -27,7 +33,6 @@ namespace Project2
             }
             Console.WriteLine();
         }
-
         public static void WriteOutDict(int[] dict)
         {
             for (int i = 0; i < dict.Length; i++)
@@ -38,5 +43,6 @@ namespace Project2
             }
             Console.WriteLine();
         }
+        #endregion WritingOut
     }
 }

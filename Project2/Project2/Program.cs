@@ -5,39 +5,32 @@ class Program
 {
     public static void Main()
     {
-        OpenDict dict = new OpenDict();
-        Utilities.WriteOutDict(dict.data);
+        OpenDict dict = new OpenDict(10);
 
-        dict.Insert(18);
-        Utilities.WriteOutDict(dict.data);
+        int size = 20;
 
-        dict.Insert(43);
-        dict.Insert(27);
-        dict.Insert(10);
+        for (int i = 0; i < size; i++)
+        {
+            Console.WriteLine($"Adding {i}");
+            Console.WriteLine($"free space: {((dict.data.Length - dict.itemNumber) / (double)dict.data.Length) * 100}%");
 
-        Utilities.WriteOutDict(dict.data);
-
-        dict.Insert(58);
-
-        Utilities.WriteOutDict(dict.data); 
-        
-        dict.Insert(67);
+            dict.Insert(i);
+        }
 
         Utilities.WriteOutDict(dict.data);
 
-        Console.WriteLine($"seraching for 23 {dict.Find(23)}");
-        Console.WriteLine($"seraching for 58 {dict.Find(58)}");
-        Console.WriteLine($"seraching for 19 {dict.Find(19)}");
 
+        for (int i = 0; i < 10; i++)
+        {
+            Console.WriteLine($"Deleting {i}");
+            Console.WriteLine($"free space: {((dict.data.Length - dict.itemNumber) / (double)dict.data.Length) * 100}%");
+
+            dict.Delete(i);
+
+        }
+
+        Console.WriteLine($"free space: {((dict.data.Length - dict.itemNumber) / (double)dict.data.Length) * 100}%");
         Utilities.WriteOutDict(dict.data);
 
-        dict.Delete(18);
-        Utilities.WriteOutDict(dict.data);
-
-        Console.WriteLine($"seraching for 58 {dict.Find(58)}");
-
-        dict.Insert(17);
-
-        Utilities.WriteOutDict(dict.data);
     }
 }

@@ -11,5 +11,7 @@ namespace Project2.Dictonaries
         public abstract void Insert(int value);
         public abstract void Delete(int value);
         public abstract int Find(int value);
+        public abstract void IncreaseSize();
+        public abstract void DecreaseSize();
     }
 }
