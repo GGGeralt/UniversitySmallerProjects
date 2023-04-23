@@ -58,10 +58,10 @@ namespace Project2.Dictonaries
                 }
             }
 
-            if ((data.Length - itemNumber) / (double)data.Length < 0.3)
-            {
-                IncreaseSize();
-            }
+            //if ((data.Length - itemNumber) / (double)data.Length < 0.3)
+            //{
+            //    IncreaseSize();
+            //}
         }
 
         public override int Find(int value)
@@ -94,10 +94,10 @@ namespace Project2.Dictonaries
                 }
             }
 
-            if ((data.Length - itemNumber) / (double)data.Length >= 0.7 )
-            {
-                DecreaseSize();
-            }
+            //if ((data.Length - itemNumber) / (double)data.Length >= 0.7 )
+            //{
+            //    DecreaseSize();
+            //}
         }
 
         public override void IncreaseSize()
