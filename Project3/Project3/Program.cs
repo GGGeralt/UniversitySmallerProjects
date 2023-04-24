@@ -4,8 +4,8 @@ class Program
 {
     public static void Main()
     {
-        string first = "ABBBBA";
-        string second = "BBAC";
+        string first = "europa";
+        string second = "universalis";
         Console.WriteLine(LCS.Find(first, second));
     }
 }

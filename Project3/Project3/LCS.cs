@@ -22,10 +22,12 @@ namespace Project3
 
             for (int i = 0; i <= firstLength; i++)
             {
-                for (int j = 0; j <= secondLength; j++)
-                {
-                    result[i, j] = 0;
-                }
+                result[i, 0] = 0;
+            }
+
+            for (int j = 0; j <= secondLength; j++)
+            {
+                result[0, j] = 0;
             }
 
             for (int i = 0; i < firstLength; i++)
