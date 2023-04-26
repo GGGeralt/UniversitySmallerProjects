@@ -30,40 +30,45 @@ namespace Project3
                 result[0, j] = 0;
             }
 
-            for (int i = 0; i < firstLength; i++)
+            for (int i = 1; i <= firstLength; i++)
             {
-                for (int j = 0; j < secondLength; j++)
+                for (int j = 1; j <= secondLength; j++)
                 {
-                    if (first[i] == second[j])
+                    if (first[i-1] == second[j-1])
                     {
-                        result[i+1, j+1] = result[i, j] + 1;
+                        result[i, j] = result[i-1, j - 1] + 1;
                     }
                     else
                     {
-                        result[i+1, j+1] = Math.Max(result[i + 1, j], result[i, j + 1]);
+                        result[i, j] = Math.Max(result[i, j - 1], result[i - 1, j]);
                     }
                 }
             }
 
-            Console.Write("     ");
+            Console.Write("\t\t");
             for (int i = 0; i < secondLength; i++)
             {
-                Console.Write(second[i] + "    ");
+                Console.Write(second[i] + "\t");
 
             }
             Console.WriteLine();
 
 
-            for (int i = 0; i < firstLength; i++)
+            for (int i = 0; i <= firstLength; i++)
             {
-                Console.Write(first[i] + "    ");
-                for (int j = 0; j < secondLength; j++)
+                if (i == 0)
                 {
-                    if(j==0)
-                    {
-                    }
+                    Console.Write("\t");
+                }
+                else
+                {
+                    Console.Write(first[i-1] + "\t");
 
-                    Console.Write(result[i+1, j+ 1] + "    ");
+                }
+                for (int j = 0; j <= secondLength; j++)
+                {
+
+                    Console.Write(result[i, j] + "\t");
                 }
                 Console.WriteLine();
 
