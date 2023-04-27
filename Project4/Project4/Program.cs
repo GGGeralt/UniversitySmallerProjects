@@ -29,5 +29,6 @@ class Program
         algorithmer.Run();
 
         algorithmer.PrintState();
+        Console.WriteLine(algorithmer.PrintPath("B", "E"));
     }
 }
