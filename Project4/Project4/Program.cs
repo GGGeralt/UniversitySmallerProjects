@@ -26,9 +26,11 @@ class Program
 
         Algorithmer algorithmer = new Algorithmer(points, distances);
 
+        algorithmer.PrintState();
+
         algorithmer.Run();
 
         algorithmer.PrintState();
-        Console.WriteLine(algorithmer.PrintPath("B", "E"));
+        algorithmer.PrintPath("B", "E");
     }
 }

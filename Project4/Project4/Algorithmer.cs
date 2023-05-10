@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -88,32 +89,30 @@ namespace Project4
             }
         }
 
-        public string PrintPath(string first, string second)
+        public void PrintPath(string first, string second)
         {
+            Console.WriteLine($"Path from {first} to {second}");
             string path = string.Empty;
 
             if (shortestPathArray[points.IndexOf(first), points.IndexOf(second)] == null) 
             {
-                return string.Empty;
+                return;
             }
-            path += second;
+
             while (first != second)
             {
-                second = shortestPathArray[points.IndexOf(first), points.IndexOf(second)];
-                path += second;
+                string tmp = shortestPathArray[points.IndexOf(first), points.IndexOf(second)];
+                path += $"{tmp}[{distanceArray[points.IndexOf(tmp), points.IndexOf(second)]}]{second} ";
+                second = tmp;
+
             }
 
+            string[] a = path.Split(' ').Reverse().ToArray();
             string truePath = string.Empty;
-            for (int i = 1; i <= path.Length; i++)
+            foreach (var b in a)
             {
-                truePath += $"{path[path.Length - i]}";
-
-                if (i != path.Length)
-                {
-                    truePath += "->";
-                }
+                Console.WriteLine(b);
             }
-            return truePath;
         }
     }
 }
