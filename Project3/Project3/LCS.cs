@@ -13,6 +13,7 @@ namespace Project3
         {
             Console.WriteLine($"First === {first}");
             Console.WriteLine($"Second === {second}");
+            Console.WriteLine();
 
 
             int firstLength = first.Length;
